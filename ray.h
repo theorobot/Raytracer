@@ -39,7 +39,6 @@ public:
     }
 };
 
-// Overload operator* to support float * Vec3f
 Vec3f operator*(float scalar, const Vec3f& vec) {
     return Vec3f(vec.x * scalar, vec.y * scalar, vec.z * scalar);
 }
@@ -50,17 +49,14 @@ public:
 
     Color(float r = 0.0f, float g = 0.0f, float b = 0.0f) : r(r), g(g), b(b) {}
 
-    // Multiplication with another color
     Color operator*(const Color& other) const {
         return Color(r * other.r, g * other.g, b * other.b);
     }
 
-    // Multiplication with a scalar
     Color operator*(float scalar) const {
         return Color(r * scalar, g * scalar, b * scalar);
     }
 
-    // Addition with another color
     Color operator+(const Color& other) const {
         return Color(r + other.r, g + other.g, b + other.b);
     }
@@ -79,7 +75,6 @@ public:
     Ray(Vec3f origin, Vec3f dir, Color col = Color(1.0f, 1.0f, 1.0f), int num_bounces = 0)
         : origin(origin), dir(dir.normalize()), col(col), num_bounces(num_bounces) {}
 };
-
 
 class Sphere {
 public:
@@ -127,7 +122,7 @@ Color calculateRayColor(Ray r) {
 
     float closest_t = 1000.0f;
     Sphere* closest_sphere = nullptr;
-    
+
     float intersection = raySphereIntersection(r, s);
     if (intersection > 0.0f && intersection < closest_t) {
         closest_t = intersection;
