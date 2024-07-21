@@ -64,18 +64,15 @@ sf::Image averageImages(const std::vector<sf::Image>& images) {
         return sf::Image();
     }
 
-    // Get the size of the images (assuming they are all the same size)
     sf::Vector2u imageSize = images[0].getSize();
     unsigned int width = imageSize.x;
     unsigned int height = imageSize.y;
 
-    // Variables to accumulate the sum of pixel values
     std::vector<unsigned int> sumR(width * height, 0);
     std::vector<unsigned int> sumG(width * height, 0);
     std::vector<unsigned int> sumB(width * height, 0);
     std::vector<unsigned int> sumA(width * height, 0);
 
-    // Accumulate pixel values
     for (const auto& image : images) {
         for (unsigned int y = 0; y < height; ++y) {
             for (unsigned int x = 0; x < width; ++x) {
@@ -88,7 +85,6 @@ sf::Image averageImages(const std::vector<sf::Image>& images) {
         }
     }
 
-    // Compute the average pixel values
     sf::Image averagedImage;
     averagedImage.create(width, height);
     for (unsigned int y = 0; y < height; ++y) {
@@ -108,7 +104,7 @@ sf::Image averageImages(const std::vector<sf::Image>& images) {
 void GenerateImage() {
     std::vector<sf::Image> images;
 
-    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Progressive Image Rendering");
+    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Raytracing");
 
     int frameCount = 1;
 
